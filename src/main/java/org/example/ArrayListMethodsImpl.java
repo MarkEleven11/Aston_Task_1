@@ -2,6 +2,12 @@ package org.example;
 
 import java.util.Arrays;
 
+/**
+ * Класс, реализующий основные методы динамического массива
+ *
+ * @author Alexandr Titov
+ * @version 1.0
+ */
 public class ArrayListMethodsImpl<T> implements ArrayListMethods<T> {
 
     private static int CAPACITY = 10;
@@ -51,7 +57,7 @@ public class ArrayListMethodsImpl<T> implements ArrayListMethods<T> {
     }
 
     @Override
-    public boolean deleteIndexElement(T element) {
+    public boolean deleteElement(T element) {
         for (int i = 0; i < size; i++) {
             if (array[i].equals(element)) {
                 remove(i);
@@ -69,6 +75,14 @@ public class ArrayListMethodsImpl<T> implements ArrayListMethods<T> {
         size = 0;
     }
 
+    @Override
+    public int size() {
+        return this.size;
+    }
+
+    /**
+     * Позволяет увеличивать размер массива в 2 раза
+     */
     private void increaseCapacity() {
         if (size == 10) {
             int nextCapacity = array.length * 2;
@@ -76,6 +90,11 @@ public class ArrayListMethodsImpl<T> implements ArrayListMethods<T> {
         }
     }
 
+    /**
+     * Позволяет удалить элемент по заданному методу
+     *
+     * @param index - индекс удаляемого элемента
+     */
     private void remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
